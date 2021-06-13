@@ -12,20 +12,33 @@
             <RowDefinition Height="5*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="IChatting" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Segoe UI" FontWeight="SemiBold" FontSize="30" Foreground="#0083B0"></TextBlock>
+            <Button Grid.Column="1" Command="{Binding LeaveCommand}" Name="LeaveBtn" HorizontalAlignment="Center" Width="100" Margin="0,10,0,10" FontFamily="Segoe UI" FontSize="24" FontWeight="SemiBold" Content="Leave" Background="#0083B0" Foreground="WhiteSmoke">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="15"></Setter>
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </Grid>
 
-        <Button Grid.Row="0" Name="LeaveBtn" HorizontalAlignment="Right" Width="100" Margin="0,10,10,10" FontFamily="Segoe UI" FontSize="24" FontWeight="SemiBold" Content="Leave" Background="#0083B0" Foreground="WhiteSmoke">
-            <Button.Resources>
-                <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="15"></Setter>
-                </Style>
-            </Button.Resources>
-        </Button>
+        <ListBox Grid.Row="1" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Name="MessagesLstbx" ItemsSource="{Binding MainViewModel.MessageList}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding}" FontFamily="Segoe UI" FontSize="20" FontWeight="SemiBold" Foreground="Black" TextAlignment="Right"></TextBlock>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
 
-        <ListBox Grid.Row="1"></ListBox>
+        </ListBox>
 
         <StackPanel Grid.Row="2" Orientation="Horizontal">
-            <TextBox Name="MessageTxtb" Width="350" FontFamily="Segoe UI" FontSize="24" FontWeight="SemiBold"></TextBox>
-            <Button Name="SendBtn" HorizontalAlignment="Right" Width="90" FontFamily="Segoe UI" FontSize="24" FontWeight="SemiBold" Content="Send" Background="#0083B0" Foreground="WhiteSmoke">
+            <TextBox Text="{Binding Message,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Name="MessageTxtb" Width="350" FontFamily="Segoe UI" FontSize="24" FontWeight="SemiBold"></TextBox>
+            <Button Name="SendBtn" Command="{Binding SendCommand}" HorizontalAlignment="Right" Width="90" FontFamily="Segoe UI" FontSize="24" FontWeight="SemiBold" Content="Send" Background="#0083B0" Foreground="WhiteSmoke">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="15"></Setter>
@@ -33,6 +46,6 @@
                 </Button.Resources>
             </Button>
         </StackPanel>
-        
+
     </Grid>
 </Window>

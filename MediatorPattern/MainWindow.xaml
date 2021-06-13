@@ -20,12 +20,12 @@
 
         <StackPanel Grid.Row="0">
             <TextBlock Name="NicknameTxtblock" FontFamily="Segoe UI" FontSize="36" FontWeight="SemiBold" HorizontalAlignment="Center" Margin="0,100,0,10">Nickname</TextBlock>
-            <TextBox Name="NicknameTxtbox" FontFamily="Segoe UI" FontSize="36" FontWeight="SemiBold" HorizontalAlignment="Center" Width="250"></TextBox>
+            <TextBox Text="{Binding Nickname,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Name="NicknameTxtbox" FontFamily="Segoe UI" FontSize="36" FontWeight="SemiBold" HorizontalAlignment="Center" Width="250"></TextBox>
         </StackPanel>
-        
-        
-        
-        <Button Name="JoinBtn" Grid.Row="1" Margin="280,25,280,75" FontFamily="Segoe UI" FontSize="50" FontWeight="SemiBold" Content="Join" Background="#0083B0" Foreground="WhiteSmoke">
+
+
+
+        <Button Name="JoinBtn" Command="{Binding JoinCommand}" Grid.Row="1" Margin="280,25,280,75" FontFamily="Segoe UI" FontSize="50" FontWeight="SemiBold" Content="Join" Background="#0083B0" Foreground="WhiteSmoke">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="15"></Setter>
